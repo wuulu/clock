@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日期與時間</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f0f1a;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+.clock {
+  text-align: center;
+  color: #e0e0e0;
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 0 60px rgba(100,140,255,0.08);
+  backdrop-filter: blur(8px);
+}
+.date {
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: #8899cc;
+  margin-bottom: 0.6rem;
+}
+.time {
+  font-size: 5rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+<div class="clock">
+  <div class="date" id="date"></div>
+  <div class="time" id="time"></div>
+</div>
+<script>
+function updateClock() {
+  const now = new Date();
+  const days = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+  const y = now.getFullYear();
+  const m = String(now.getMonth()+1).padStart(2,'0');
+  const d = String(now.getDate()).padStart(2,'0');
+  const day = days[now.getDay()];
+  document.getElementById('date').textContent = `${y} 年 ${m} 月 ${d} 日 ${day}`;
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('time').textContent = `${hh}:${mm}:${ss}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
